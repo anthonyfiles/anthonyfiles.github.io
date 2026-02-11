@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Lithgow Files</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="hero fade-section">
+    <div class="container">
+      <h1>THE LITHGOW FILES</h1>
+      <p class="subtitle">CLASSIFIED HOUSE DOCUMENTS – FULL RELEASE IN:</p>
+      <div id="countdown" class="timer"></div>
+      <p class="lede">The truth... February 25, 2026 – 5:03 PM AWST.</p>
+    </div>
+  </section>
+
+  <section class="file-drop fade-section">
+    <div class="container">
+      <h2>File 001</h2>
+      <div class="redacted-box">
+        <img src="images/file007.png" alt="Redacted Visitor Log Document" class="redacted-image">
+      </div>
+    </div>
+  </section>
+
+  <section class="file-drop fade-section odd">
+    <div class="container">
+      <h2>File 002</h2>
+      <div class="redacted-box">
+        <img src="images/file008.png" alt="House Access Records Document" class="redacted-image">
+      </div>
+    </div>
+  </section>
+
+  <section class="file-drop fade-section">
+    <div class="container">
+      <h2>File 0039</h2>
+      <div class="redacted-box mono">
+        <img src="images/file009.png" alt="Guest Book Redacted Page" class="redacted-image">
+      </div>
+    </div>
+  </section>
+
+  <section class="file-drop fade-section odd">
+    <div class="container">
+      <h2>More Files Comming...</h2>
+    </div>
+  </section>
+
+  <script>
+    const targetDate = new Date("2026-02-25T17:03:00+08:00");
+    const countDownDate = targetDate.getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("countdown").innerHTML = "<div class='finished'>HOUSE FILES DROPPED! CHECK THE MAILBOX 🚨</div>";
+        return;
+      }
+
+      const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `
+        <div class="unit"><span class="value">${days}</span><span class="label">DAYS</span></div>
+        <div class="unit"><span class="value">${hours.toString().padStart(2, '0')}</span><span class="label">HOURS</span></div>
+        <div class="unit"><span class="value">${minutes.toString().padStart(2, '0')}</span><span class="label">MIN</span></div>
+        <div class="unit"><span class="value">${seconds.toString().padStart(2, '0')}</span><span class="label">SEC</span></div>
+      `;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+
+  <script>
+    // Fade-in on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeSections = document.querySelectorAll('.fade-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeSections.forEach(section => observer.observe(section));
+    });
+  </script>
+
+</body>
+</html>
