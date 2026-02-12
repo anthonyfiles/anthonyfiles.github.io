@@ -1,106 +1,215 @@
-/* ──────────────────────────────────────────────
-   Password Screen (theme-matched)
-─────────────────────────────────────────────── */
-#password-overlay {
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #000814 0%, #001122 50%, #000814 100%);
+  color: #b0e0ff;
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Password screen: blur the background behind the panel */
+#access-overlay {
   position: fixed;
   inset: 0;
-  background: #0a0a0a;
-  z-index: 9999;
+  background: rgba(0, 8, 20, 0.4);
+  backdrop-filter: blur(12px);        /* <-- blurred background while typing password */
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #00ff41;
-  font-family: 'Orbitron', sans-serif;
+  z-index: 999999;
 }
 
-.password-box {
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid #00ff41;
-  border-radius: 3px;
-  padding: 2.5rem 3rem;
+.access-panel {
+  background: rgba(0, 20, 40, 0.92);
+  border: 2px solid #40c0ff;
+  border-radius: 10px;
+  padding: 50px 60px;
+  max-width: 500px;
   width: 90%;
-  max-width: 480px;
-  box-shadow: 0 0 30px rgba(0, 255, 65, 0.15);
   text-align: center;
+  box-shadow: 0 0 50px rgba(64, 192, 255, 0.3);
 }
 
-.password-box h2 {
-  margin: 0 0 1.5rem;
-  font-size: 1.8rem;
+.access-panel h2 {
+  font-size: 2.1rem;
   letter-spacing: 3px;
   text-transform: uppercase;
+  margin-bottom: 35px;
+  color: #80e0ff;
+  font-weight: 500;
 }
 
-.password-box input {
-  background: #000;
-  border: 1px solid #00ff41;
-  color: #00ff41;
+.access-panel input {
+  background: #001122;
+  border: 1px solid #40c0ff;
+  color: #b0e0ff;
   font-family: 'Roboto Mono', monospace;
-  font-size: 1.3rem;
-  padding: 0.9rem 1.2rem;
+  font-size: 1.4rem;
+  padding: 14px;
   width: 100%;
-  margin: 1rem 0 1.5rem;
+  margin: 20px 0;
   outline: none;
-  transition: box-shadow 0.2s;
+  border-radius: 4px;
 }
 
-.password-box input:focus {
-  box-shadow: 0 0 12px rgba(0, 255, 65, 0.5);
+.access-panel input:focus {
+  border-color: #80e0ff;
+  box-shadow: 0 0 12px rgba(128, 224, 255, 0.4);
 }
 
-.password-box button {
-  background: #00ff41;
-  color: #000;
+.access-panel button {
+  background: #40c0ff;
+  color: #001122;
   border: none;
-  padding: 0.9rem 2rem;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
+  padding: 14px 60px;
+  font-size: 1.2rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
   text-transform: uppercase;
   letter-spacing: 2px;
+  border-radius: 6px;
+  transition: all 0.2s;
 }
 
-.password-box button:hover {
-  background: #00cc33;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+.access-panel button:hover {
+  background: #80e0ff;
+  box-shadow: 0 0 20px rgba(128, 224, 255, 0.5);
 }
 
-#error-msg {
-  color: #ff2a6d;
-  margin-top: 1rem;
-  min-height: 1.4rem;
+#access-error {
+  color: #ff6b8a;
+  margin-top: 25px;
   font-family: 'Roboto Mono', monospace;
+  font-size: 1.1rem;
+  min-height: 1.5em;
 }
 
-/* Hide content until authenticated */
-body.hidden {
-  visibility: hidden;
-  overflow: hidden;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* ──────────────────────────────────────────────
-   Your existing site styles go here (or keep as-is)
-   If you already have style.css, just append the above block at the top or bottom.
-─────────────────────────────────────────────── */
-
-/* Example placeholders if you don't have them yet */
-body {
-  margin: 0;
-  background: #000;
-  color: #00ff41;
-  font-family: 'Orbitron', sans-serif;
-}
-
+/* Main content styles */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* ... rest of your original style.css content ... */1
+.hero h1 {
+  font-size: 3.2rem;
+  text-align: center;
+  margin: 2.5rem 0 0.8rem;
+  letter-spacing: 2px;
+  color: #80e0ff;
+  font-weight: 600;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.3rem;
+  opacity: 0.9;
+  color: #b0e0ff;
+}
+
+.lede {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  opacity: 0.85;
+  color: #c0e8ff;
+}
+
+/* BIG TIMER */
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 3rem 0 6rem; /* even more space below */
+  font-size: 3.2rem;
+  color: #b0e0ff;
+}
+
+.value {
+  display: block;
+  font-size: 7rem;          /* ← way bigger */
+  font-weight: 700;
+  line-height: 1;
+  color: #80e0ff;
+  text-shadow: 0 0 20px rgba(128, 224, 255, 0.6);
+}
+
+.label {
+  font-size: 1.2rem;
+  opacity: 0.75;
+  color: #c0e8ff;
+  margin-top: 0.6rem;
+}
+
+/* Previews – titles centered */
+.file-drop h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #80e0ff;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+.file-drop {
+  margin-top: 3rem;
+}
+
+.redacted-box {
+  margin: 1.5rem auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+.redacted-image {
+  max-width: 480px;           /* ← smaller again */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: blur(14px) grayscale(0.7);
+  transition: all 0.45s ease;
+  border-radius: 6px;
+  border: 1px solid #003366;
+  box-shadow: 0 0 15px rgba(64, 192, 255, 0.15);
+}
+
+.redacted-image:hover {
+  filter: blur(0) grayscale(0);
+  transform: scale(1.04);
+  box-shadow: 0 0 35px rgba(64, 192, 255, 0.45);
+}
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.9s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.odd {
+  background: rgba(0, 40, 80, 0.12);
+}
+
+.download-btn {
+  display: inline-block;
+  background: #40c0ff;
+  color: #001122;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  transition: all 0.25s;
+}
+
+.download-btn:hover {
+  background: #80e0ff;
+  box-shadow: 0 0 20px rgba(128, 224, 255, 0.6);
+}
