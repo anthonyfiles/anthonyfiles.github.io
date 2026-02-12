@@ -4,38 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
   <title>Lithgow Files</title>
-
   <meta name="google-site-verification" content="q_2HowHXHkM_u9nKlolb29chvs0aBbIX12c1A3LnW4Q">
-
-
   <meta name="description" content="The Lithgow Files – classified documents, countdown to full release, and archive drops.">
-
   <meta name="keywords" content="lithgow files, the lithgow files, anthony files, granthony files, classified documents, file drop, archive leak">
-
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="hidden">
 
-  <script>
-    const correct = "granthrinelikeskids"; // change this
-
-    const pass = prompt("Enter access password:");
-
-    if (pass !== correct) {
-      document.body.innerHTML = "";
-      document.body.style.background = "black";
-
-      setTimeout(() => {
-        window.location.replace("https://google.com");
-      }, 200);
-    }
-  </script>
-
-
-
+  <!-- Password overlay -->
+  <div id="password-overlay">
+    <div class="password-box">
+      <h2>ACCESS REQUIRED</h2>
+      <input type="password" id="pass-input" placeholder="ENTER PASSPHRASE" autocomplete="off">
+      <button id="submit-pass">AUTHENTICATE</button>
+      <div id="error-msg"></div>
+    </div>
+  </div>
 
   <section class="hero fade-section">
     <div class="container">
@@ -66,7 +52,7 @@
 
   <section class="file-drop fade-section">
     <div class="container">
-      <h2>Previw 3</h2>
+      <h2>Preview 3</h2>
       <div class="redacted-box mono">
         <img src="images/file009.png" alt="Guest Book Redacted Page" class="redacted-image">
       </div>
@@ -75,21 +61,53 @@
 
   <section class="file-drop fade-section odd">
     <div class="container">
-      <h2>More Files Comming...</h2>
+      <h2>More Files Coming...</h2>
     </div>
   </section>
 
   <section id="downloads" class="file-drop fade-section" style="display:none;">
     <div class="container">
-       <h2>FULL FILE DROP</h2>
-       <p class="subtitle">Encrypted archives now available.</p>
-
-       <a href="images" download class="download-btn">
-      DOWNLOAD FULL ARCHIVE
-      </a>
+      <h2>FULL FILE DROP</h2>
+      <p class="subtitle">Encrypted archives now available.</p>
+      <a href="images" download class="download-btn">DOWNLOAD FULL ARCHIVE</a>
     </div>
   </section>
 
+  <script>
+    const correct = "granthrinelikeskids"; // change this
+
+    const overlay = document.getElementById("password-overlay");
+    const input   = document.getElementById("pass-input");
+    const btn     = document.getElementById("submit-pass");
+    const error   = document.getElementById("error-msg");
+    const body    = document.body;
+
+    function checkPassword() {
+      if (input.value === correct) {
+        overlay.classList.add("hidden");
+        body.classList.remove("hidden");
+        input.value = ""; // clear it
+      } else {
+        error.textContent = "ACCESS DENIED";
+        input.value = "";
+        input.focus();
+        setTimeout(() => { error.textContent = ""; }, 2200);
+      }
+    }
+
+    btn.addEventListener("click", checkPassword);
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        checkPassword();
+      }
+    });
+
+    // Auto-focus input
+    window.addEventListener("load", () => {
+      input.focus();
+    });
+  </script>
 
   <script>
     const targetDate = new Date("2026-02-19T17:03:00+08:00");
@@ -100,7 +118,8 @@
       const distance = countDownDate - now;
 
       if (distance <= 0) {
-        document.getElementById("countdown").innerHTML = "<div class='finished'>HOUSE FILES DROPPED! CHECK THE MAILBOX 🚨</div>";
+        document.getElementById("countdown").innerHTML = 
+          "<div class='finished'>HOUSE FILES DROPPED! CHECK THE MAILBOX 🚨</div>";
         return;
       }
 
@@ -138,12 +157,4 @@
   </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
