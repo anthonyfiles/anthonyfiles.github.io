@@ -14,14 +14,35 @@
 <body class="hidden">
 
   <!-- Password overlay -->
-  <div id="password-overlay">
-    <div class="password-box">
-      <h2>ACCESS REQUIRED</h2>
-      <input type="password" id="pass-input" placeholder="ENTER PASSPHRASE" autocomplete="off">
-      <button id="submit-pass">AUTHENTICATE</button>
-      <div id="error-msg"></div>
-    </div>
+ <div id="lockscreen" style="
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 24px;
+    z-index: 99999;
+  ">
+    ACCESS REQUIRED
   </div>
+
+  <script>
+    const correct = "Granthrinelikeskids"; // change password here
+    const pass = prompt("Enter access password:");
+
+    if (pass === correct) {
+      document.getElementById("lockscreen").style.display = "none";
+    } else {
+      document.getElementById("lockscreen").innerHTML = "ACCESS DENIED";
+      setTimeout(() => {
+        window.location.replace("https://google.com");
+      }, 1200);
+    }
+  </script>
+
 
   <section class="hero fade-section">
     <div class="container">
@@ -161,4 +182,5 @@
 
 </body>
 </html>
+
 
