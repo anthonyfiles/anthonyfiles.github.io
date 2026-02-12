@@ -20,11 +20,20 @@
 <body>
 
   <script>
+    const correct = "granthrinelikeskids"; // change this
+
     const pass = prompt("Enter access password:");
-    if (pass !== "granthrinelikeskids") {
-      document.body.innerHTML = "<h1 style='text-align:center;margin-top:20vh;'>Access Denied 🚫</h1>";
+
+    if (pass !== correct) {
+      document.body.innerHTML = "";
+      document.body.style.background = "black";
+
+      setTimeout(() => {
+        window.location.replace("https://google.com");
+      }, 200);
     }
   </script>
+
 
 
 
@@ -131,6 +140,7 @@
 </body>
 
 </html>
+
 
 
 
