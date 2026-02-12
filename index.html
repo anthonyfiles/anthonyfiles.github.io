@@ -8,42 +8,22 @@
   <meta name="google-site-verification" content="q_2HowHXHkM_u9nKlolb29chvs0aBbIX12c1A3LnW4Q">
   <meta name="description" content="The Lithgow Files – classified documents, countdown to full release, and archive drops.">
   <meta name="keywords" content="lithgow files, the lithgow files, anthony files, granthony files, classified documents, file drop, archive leak">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="hidden">
+<body>
 
   <!-- Password overlay -->
- <div id="lockscreen" style="
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: monospace;
-    font-size: 24px;
-    z-index: 99999;
-  ">
-    ACCESS REQUIRED
+  <div id="access-overlay">
+    <div class="access-panel">
+      <h2>ACCESS REQUIRED</h2>
+      <input type="password" id="access-code" placeholder="ENTER PASSPHRASE" autocomplete="off" autofocus>
+      <button id="unlock-btn">AUTHENTICATE</button>
+      <div id="access-error"></div>
+    </div>
   </div>
 
-  <script>
-    const correct = "Granthrinelikeskids"; // change password here
-    const pass = prompt("Enter access password:");
-
-    if (pass === correct) {
-      document.getElementById("lockscreen").style.display = "none";
-    } else {
-      document.getElementById("lockscreen").innerHTML = "ACCESS DENIED";
-      setTimeout(() => {
-        window.location.replace("https://google.com");
-      }, 1200);
-    }
-  </script>
-
-
+  <!-- Main content -->
   <section class="hero fade-section">
     <div class="container">
       <h1>THE LITHGOW FILES</h1>
@@ -90,41 +70,35 @@
     <div class="container">
       <h2>FULL FILE DROP</h2>
       <p class="subtitle">Encrypted archives now available.</p>
-      <a href="images" download class="download-btn">DOWNLOAD FULL ARCHIVE</a>
+      <a href="images/" download class="download-btn">DOWNLOAD FULL ARCHIVE</a>
     </div>
   </section>
 
   <script>
-    const correct = "granthrinelikeskids"; // change this
+    const CORRECT = "granthrinelikeskids";
 
-    const overlay = document.getElementById("password-overlay");
-    const input   = document.getElementById("pass-input");
-    const btn     = document.getElementById("submit-pass");
-    const error   = document.getElementById("error-msg");
-    const body    = document.body;
+    const overlay = document.getElementById("access-overlay");
+    const input   = document.getElementById("access-code");
+    const button  = document.getElementById("unlock-btn");
+    const error   = document.getElementById("access-error");
 
-    function checkPassword() {
-      if (input.value === correct) {
-        overlay.classList.add("hidden");
-        body.classList.remove("hidden");
-        input.value = ""; // clear it
+    function unlock() {
+      if (input.value === CORRECT) {
+        overlay.style.display = "none";
+        document.body.style.overflow = "visible";
       } else {
         error.textContent = "ACCESS DENIED";
         input.value = "";
         input.focus();
-        setTimeout(() => { error.textContent = ""; }, 2200);
+        setTimeout(() => error.textContent = "", 2000);
       }
     }
 
-    btn.addEventListener("click", checkPassword);
-
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        checkPassword();
-      }
+    button.addEventListener("click", unlock);
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") unlock();
     });
 
-    // Auto-focus input
     window.addEventListener("load", () => {
       input.focus();
     });
@@ -133,22 +107,17 @@
   <script>
     const targetDate = new Date("2026-02-19T17:03:00+08:00");
     const countDownDate = targetDate.getTime();
-
     function updateTimer() {
       const now = new Date().getTime();
       const distance = countDownDate - now;
-
       if (distance <= 0) {
-        document.getElementById("countdown").innerHTML = 
-          "<div class='finished'>HOUSE FILES DROPPED! CHECK THE MAILBOX 🚨</div>";
+        document.getElementById("countdown").innerHTML = "<div class='finished'>HOUSE FILES DROPPED! CHECK THE MAILBOX 🚨</div>";
         return;
       }
-
-      const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       document.getElementById("countdown").innerHTML = `
         <div class="unit"><span class="value">${days}</span><span class="label">DAYS</span></div>
         <div class="unit"><span class="value">${hours.toString().padStart(2, '0')}</span><span class="label">HOURS</span></div>
@@ -156,13 +125,11 @@
         <div class="unit"><span class="value">${seconds.toString().padStart(2, '0')}</span><span class="label">SEC</span></div>
       `;
     }
-
     updateTimer();
     setInterval(updateTimer, 1000);
   </script>
 
   <script>
-    // Fade-in on scroll
     document.addEventListener('DOMContentLoaded', () => {
       const fadeSections = document.querySelectorAll('.fade-section');
       const observer = new IntersectionObserver((entries) => {
@@ -177,10 +144,5 @@
     });
   </script>
 
-  <script data-goatcounter="https://anthonyfiles.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-
 </body>
 </html>
-
-
