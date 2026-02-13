@@ -212,3 +212,112 @@ body {
   box-shadow: 0 0 20px rgba(128, 224, 255, 0.6);
 }
 
+/* reveal-styles.css */
+
+.reveal-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem 0 3.5rem 0;
+  padding: 0 1rem;
+}
+
+.reveal-btn {
+  padding: 1.1rem 2.8rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: #1a1a1a;
+  border: 2px solid #8b5cf6;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.18);
+}
+
+.reveal-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.32);
+  border-color: #a78bfa;
+  background: #222222;
+}
+
+.reveal-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.files-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0f0f0f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(40px);
+}
+
+.files-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.overlay-content {
+  text-align: center;
+  padding: 2.5rem;
+  max-width: 90%;
+}
+
+.coming-soon-text {
+  font-size: 3.4rem;
+  font-weight: 700;
+  line-height: 1.12;
+  margin-bottom: 5rem;
+  background: linear-gradient(90deg, #c084fc, #e9d5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(192, 132, 252, 0.3);
+}
+
+.back-btn {
+  padding: 1rem 2.4rem;
+  font-size: 1.15rem;
+  color: #e0e0e0;
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.35);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  color: white;
+  background: rgba(192, 132, 252, 0.18);
+  border-color: rgba(192, 132, 252, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(192, 132, 252, 0.2);
+}
+
+.back-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .coming-soon-text {
+    font-size: 2.4rem;
+    margin-bottom: 4rem;
+  }
+
+  .reveal-btn {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.15rem;
+  }
+}
