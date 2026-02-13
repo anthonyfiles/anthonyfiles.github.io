@@ -11,10 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+<script disable-devtool-auto src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
 <body>
 
-  <!-- Password overlay -->
   <div id="access-overlay">
     <div class="access-panel">
       <h2>ACCESS REQUIRED</h2>
@@ -28,8 +27,6 @@
     The Lithgow Files, also known as the Anthony Files and Granthony Files, include classified documents, leaked archives, and secret files for research and investigation purposes.
   </p>
 
-
-  <!-- Main content -->
   <section class="hero fade-section">
     <div class="container">
       <h1>THE LITHGOW FILES</h1>
@@ -39,11 +36,32 @@
     </div>
   </section>
 
+<!-- 
+  Place this where the button should appear 
+  (right under your countdown timer, above any preview/content area)
+-->
+
+<div class="reveal-btn-wrapper">
+  <button class="reveal-btn">Reveal Files</button>
+</div>
+
+<!-- Overlay (the black full-screen page) -->
+<div id="files-overlay" class="files-overlay">
+  <div class="overlay-content">
+    <div class="coming-soon-text">
+      Will be revealed<br>when timer ends
+    </div>
+
+    <button class="back-btn">Back to main view</button>
+  </div>
+</div>
+
+
   <section class="file-drop fade-section">
     <div class="container">
       <h2>Preview 1</h2>
       <div class="redacted-box">
-        <img src="images/file007.png" alt="Redacted Visitor Log Document" class="redacted-image">
+        <img src="images/file001.png" alt="Redacted Visitor Log Document" class="redacted-image">
       </div>
     </div>
   </section>
@@ -52,7 +70,7 @@
     <div class="container">
       <h2>Preview 2</h2>
       <div class="redacted-box">
-        <img src="images/file008.png" alt="House Access Records Document" class="redacted-image">
+        <img src="images/file003.png" alt="House Access Records Document" class="redacted-image">
       </div>
     </div>
   </section>
@@ -61,7 +79,7 @@
     <div class="container">
       <h2>Preview 3</h2>
       <div class="redacted-box mono">
-        <img src="images/file009.png" alt="Guest Book Redacted Page" class="redacted-image">
+        <img src="images/file004.png" alt="Guest Book Redacted Page" class="redacted-image">
       </div>
     </div>
   </section>
@@ -158,6 +176,42 @@
 </body>
 </html>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.querySelector('.reveal-btn');
+    const overlay = document.getElementById('files-overlay');
+    const backBtn = document.querySelector('.back-btn');
 
+    if (btn && overlay) {
+      btn.addEventListener('click', () => {
+        overlay.classList.add('active');
+      });
+    }
 
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        overlay.classList.remove('active');
+        // Later you can actually close it here when files are ready
+      });
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealBtn = document.querySelector('.reveal-btn');
+    const overlay   = document.getElementById('files-overlay');
+    const backBtn   = document.querySelector('.back-btn');
 
+    if (revealBtn && overlay) {
+      revealBtn.addEventListener('click', () => {
+        overlay.classList.add('active');
+      });
+    }
+
+    if (backBtn && overlay) {
+      backBtn.addEventListener('click', () => {
+        overlay.classList.remove('active');
+      });
+    }
+  });
+</script>
